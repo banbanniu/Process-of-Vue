@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind基本用法</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .active{
+            color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div id ="app">
+        <!-- <h1 :class = "{类名1：boolean , 类名2 : boolean}"></h1> -->
+        <h1 v-bind:class = "{active : isActive,line : isLine}">{{message}}</h1>
+        <button v-on:click = "onClick">牛子航，点我变色啊</button>
+    </div>
+
+    <script>
+     //创建Vue实例,得到 ViewModel
+     var app = new Vue({
+        el: '#app',
+        data: {
+            message : '牛子航',
+            isActive : true,
+            isLine : true
+        },
+        methods: {
+
+           onClick:function(){
+               this.isActive = !this.isActive;
+           }
+
+        }
+     });
+    </script>
+</body>
+
+</html>

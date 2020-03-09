@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script src="../js/vue.js"></script>
+</head>
+
+<body>
+	<div id="app">
+		<!-- <cpn1></cpn1> cpnC1组件因为是cpnC2的子组件，所以在vue的div root目录中不能使用，会报错 -->
+		<cpn2></cpn2>
+	</div>
+
+	<script>
+		//1.创建第一个组件构造器
+		const cpnC1 = Vue.extend({
+			template : `
+				<div>
+					<h1>我时标题一</h1>
+					<p>我是内容，哈哈哈</p>
+				</div>
+			`
+		});
+		//2.创建第二个组件构造器
+		const cpnC2 = Vue.extend({
+			template : `
+				<div>
+					<h1>我时标题二</h1>
+					<p>我是内容，呵呵呵</p>
+					<cpn1></cpn1>
+				</div>
+			`,
+			//这种注册方式是局部注册方式,cpnC1是cpnC2的子组件，所以在cpnC2de template 中可以用他的组件标签
+			components :({
+				cpn1 :cpnC1
+			})
+		});
+		//3.注册组件(这种注册方式是全局注册)
+		// Vue.component('cpn1',cpnC1);
+		// Vue.component('cpn2',cpnC2)
+		//创建Vue实例,得到 ViewModel
+		//root组件
+		var app = new Vue({
+			el: '#app',
+			data: {},
+			methods: {},
+			components : ({
+				cpn2 : cpnC2
+			})
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1.lazy修饰符，使用此修饰符后绑定值不会实时刷新，会当点击回车或者鼠标焦点移除后刷新绑定数据 -->
+    <input type="text" v-model.lazy="message">
+    <h2>{{message}}</h2>
+
+    <!-- 2.number修饰符，v-model绑定值的类型默认为string类型，即使在input的type类型李输入的
+            是number类型，但是其绑定的值的类型仍然为string，如果需要特定的number，则给其绑定一个number修饰符即可。 -->
+    <input type="number" v-model.number.lazy="age">
+    <h2>{{age}}-{{typeof age}}</h2>
+
+    <!-- 3.trim修饰符，trim主要针对绑定的空格，如果在input中输入了很多空格然后在输入字符，绑定值默认会将空格也绑定在内，
+        trim修饰符可以使其消除空格，只绑定对应的值。 -->
+      <input type="text" v-model.trim="msg">
+      <h2>{{msg}}</h2>
+  </div>
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'hello world',
+        age: '',
+        msg : ''
+      },
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

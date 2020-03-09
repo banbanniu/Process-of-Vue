@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>组件中data()的用法</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <my-count></my-count>
+  </div>
+
+  <template id="counter">
+    <div>
+      <h2>当前数字为:{{count}}</h2>
+      <button @click="add()">+</button>
+      <button @click="dir()">-</button>
+    </div>
+  </template>
+
+  <script>
+
+    Vue.component('my-count',{
+        template : '#counter',
+        data() {
+          return {
+            count: 0
+          }
+        },
+        methods : {
+          add(){
+            this.count++
+          },
+          dir(){
+            this.count--
+          }
+        }
+    }
+    )
+    var app = new Vue({
+      el: '#app',
+      data: {},
+      methods: {},
+      // components: {
+
+
+      // }
+    });
+  </script>
+</body>
+
+</html>

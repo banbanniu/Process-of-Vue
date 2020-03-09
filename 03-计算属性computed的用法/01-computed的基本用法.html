@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app"> 
+       <h1> {{firstName + ' ' + lastName}}</h1> 
+        <h2>{{firstName}} {{lastName}}</h2>
+        <h3>{{getFullName()}}</h3>
+        <h3>{{fullName}}</h3>
+    </div>
+
+    <script>
+     //创建Vue实例,得到 ViewModel
+     //options里可以放el,data,methods和生命周期钩子函数
+     var app = new Vue({
+        el: '#app',
+        data: {
+            firstName : 'Niu',
+            lastName : 'zihang'
+
+        },
+        methods: {
+            getFullName : function(){
+                return this.firstName + '' + this.lastName
+            }
+        },
+        computed : {
+            // 计算属性是针对属性的一种方法，所以也要用function(){}
+            fullName : function(){
+                return this.firstName + ' ' + this.lastName
+            }
+        }
+     });
+    </script>
+</body>
+
+</html>

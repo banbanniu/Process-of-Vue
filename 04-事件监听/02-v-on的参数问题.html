@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-on的参数问题</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app">
+      <!-- 当绑定的事件方法没有参数时，方法名可以带括号也可以不带 -->
+      <button @click = "btn1Click">按钮1</button> 
+      <button @click = "btn1Click()">按钮1</button>
+      <!-- 如果方法中带参数，但在绑定事件的时候没有写参数那么控制台不会报错，但是会对打印参数时输出undefined; -->
+      <button @click = "btn2Click()">按钮2</button>
+      <!-- 如果方法中带参数，但在绑定事件的时候括号没写，那么在打印输出是会输出对应的事件（如鼠标点击，拖动等） -->
+      <button @click = "btn2Click">按钮2</button>
+
+      <button @click = "btn3Click(123)">按钮3</button>
+      <!-- 如果直接在方法参数中传入参数值，则直接打印，如上。如在参数中写了属性，则需要在vue的data中定义属性值，如下； -->
+      <button @click = "btn3Click(abc)">按钮3</button>
+      <button @click = "btn3Click('abc')">按钮4</button>
+      <!-- 如果在方法中定义了点击事件event参数和正常参数abc，如果在事件绑定是只写方法名，不写括号和参数，则打印事件值，event则是undefined -->
+      <button @click = "btn4Click">按钮5</button>
+      <!-- 也不能直接传入event属性的参数，会报错，因为vue会把event当作一个方法或者变量 -->
+      <button @click = "btn4Click(123,event)">按钮5</button>
+      <!-- 如需打印出事件，则需要$event符号来传入事件参数 -->
+      <button @click = "btn4Click(123,$event)">按钮5</button>
+    </div>
+
+    <script>
+     //创建Vue实例,得到 ViewModel
+     var app = new Vue({
+        el: '#app',
+        data: {
+          // abc : 123
+        },
+        methods: {
+          btn1Click(){
+            console.log('-------')
+          },
+          btn2Click(abc){
+            console.log('-----',abc)
+          },
+          btn3Click(abc){
+            console.log('-----',abc)
+          },
+          btn4Click(abc,event){
+            console.log('+++++++',abc,event)
+          }
+        }         
+     });
+    </script>
+</body>
+
+</html>

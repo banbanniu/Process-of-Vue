@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-on修饰符</v-on></title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app"> 
+        <!-- 如果不加v-on修饰符，则是冒泡打印，即按按钮1的时候divClick和btnClicK都会在控制台打印 -->
+        <!-- .once只点击一次就停止事件 -->
+        <div v-on:click.once= "divClick">
+            <button>按钮div</button>
+            <!-- .stop,组织该事件冒泡，即不把泡泡冒上到上一层去 -->
+            <button @click.stop = "btnClick">按钮1</button> 
+        </div>
+        <form action="02-v-on的参数问题.html"> 
+            <!-- 阻止默认提交事件,按键回车键默认是提交绑定 -->
+            <input type="submit" value="提交" @click.prevent= "formClick()"><br>
+            <!-- 如下是监听任意键的点击事件 -->
+            <input type="text" @keyup = "keyUp()"><br>
+            <input type="text" @keydown = "keyDown()"><br>
+            <!-- 如下是监听某一个键的点击事件 -->
+            <input type="text" @keyup.enter = "keyOne()">
+        </form>
+    </div>
+
+    <script>
+     //创建Vue实例,得到 ViewModel
+     var app = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            divClick(){
+                console.log('divClick')
+                
+            },
+            btnClick(){
+                console.log('btnClick')
+            },
+            formClick(){
+                console.log('formClick')
+            },
+            keyUp(){
+                console.log('keyUp')
+            },
+            keyDown(){
+                console.log('keydown')
+            },
+            keyOne(){
+                console.log('keyOne')
+            }
+    }
+     });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind基本用法</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app">
+        <h1>{{message}}</h1>
+        <img :src="imgUrl">
+        <a v-bind:href="logUrl">百度一下</a>
+    </div>
+
+    <script>
+     //创建Vue实例,得到 ViewModel
+     var app = new Vue({
+        el: '#app',
+        data: {
+            message : 'my name is niu zi hang',
+            imgUrl : 'https://www.baidu.com/img/bd_logo1.png?where=super',
+            logUrl : 'https://www.baidu.com'
+
+        },
+        methods: {}
+     });
+    </script>
+</body>
+
+</html>

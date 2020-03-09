@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-for与:class的用法示例</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(m, index) in movies" :class="{active : index === mark}" >
+                {{index}}-{{m}} <button v-on:click="onClick(index)">点击一下</button></li>
+                
+        </ul>
+
+    </div>
+
+    <script>
+        //创建Vue实例,得到 ViewModel
+        var app = new Vue({
+            el: '#app',
+            data: {
+                movies: ['墨攻', '肖申克的救赎', '致命ID', '疯狂外星人', '霸王别姬'],
+                mark: null
+            },
+            methods: {
+                onClick: function (index) {
+                    this.mark = index;
+
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

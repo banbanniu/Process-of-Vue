@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app"> </div>
+
+    <script>
+    const obj={
+        name: "niu yong an",
+        age : 32,
+        sex: "man",
+        like : "football",
+        //下面run这个方法是ES5的语法
+        run : function(){
+            let a = 1
+            let b =2
+            c = a+b
+            console.log(c)
+        },
+        //下面eat这个方法是ES6的语法，更简洁
+        eat() {
+            let a = 1
+            let b = 2
+            c = a+b
+            console.log(c)
+        }
+    }
+    console.log(obj);
+
+    //obj对象在const了之后不能在改变
+    // const obj = {  这种写法是错误的！
+    //     name : "wang yu"
+    // }
+    obj.name = "niu zi hang",
+    obj.age = "0.7",
+    obj.sex = "boy",
+    obj.like = "milk",
+    console.log(obj);
+    </script>
+</body>
+
+</html>

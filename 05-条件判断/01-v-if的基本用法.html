@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-if和v-else的用法</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app">
+        <h1 v-if = "isShow">{{message}}</h1> 
+        // TODO:The different of v-if and v-show
+        <h2 v-else = "isShow">按理来说你已经看不到我了</h2>
+    </div>
+    <script>
+     //创建Vue实例,得到 ViewModel
+     var app = new Vue({
+        el: '#app',
+        data: {
+            message : '来啊，看我啊',
+            isShow : true
+        },
+        methods: {}
+     });
+    </script>
+</body>
+
+</html>

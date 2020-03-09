@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app"> 
+        <h1 class="title" :class = getClasses()> {{message}}</h1>
+    </div>
+
+    <script>
+     //创建Vue实例,得到 ViewModel
+     var app = new Vue({
+        el: '#app',
+        data: {
+            active : 'abc',
+            line : 'def',
+            message : '牛子航'
+        },
+        methods: {
+            getClasses : function(){
+
+                return [this.active ,this.line]
+            }
+        }
+     });
+    </script>
+</body>
+
+</html>

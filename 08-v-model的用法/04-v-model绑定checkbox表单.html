@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 1.checkbox单选，checkbox的value，checkbox单选是一个boolean，默认不选时为false -->
+    <label for="agree">
+      <input type="checkbox" id="agree" v-model = "agree" :value = "agree">同意以上条款
+    </label><br>
+    <button :disabled = "!agree">提交</button>
+    您的选择是：{{agree}} <br>
+    <!-- 2.checkbox多选，checkbox多选时数据类型为数组 -->
+    <label  v-for="item in sports"  :for="item" >
+      <input type="checkbox" :id="item" v-model="newSports" :value="item">{{item}}
+    </label>
+    <!-- <input type="checkbox" value="篮球" v-model="sports">篮球
+    <input type="checkbox" value="足球" v-model="sports">足球
+    <input type="checkbox" value="排球" v-model="sports">排球
+    <input type="checkbox" value="水球" v-model="sports">水球 -->
+
+    <br>
+    您绑定的是：{{newSports}}
+  </div>
+
+
+  <script>
+    //创建Vue实例,得到 ViewModel
+    var app = new Vue({
+      el: '#app',
+      data: {
+        agree : false,
+        sports : ['足球','篮球','排球','羽毛球','乒乓球','高尔夫球','网球'],
+        newSports : []
+      },
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>

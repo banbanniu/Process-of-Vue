@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app">
+        <!-- <input type="text" name="message" id="message" v-model = "message"> -->
+        {{message}} <br>
+        <!-- 如果需要获取点击事件，则要不写方法不带括号即可，要不必须写$event -->
+        <input type="text" :value = "message" @input = "inputType($event)">
+    </div>
+
+    <script>
+     //创建Vue实例,得到 ViewModel
+     var app = new Vue({
+        el: '#app',
+        data: {
+            message : 'Hello Niu Zi Hang'
+        },
+        methods: {
+            inputType(event){
+               this.message = event.target.value
+            }
+        }
+     });
+    </script>
+</body>
+
+</html>

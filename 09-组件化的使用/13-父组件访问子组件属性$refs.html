@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$refs</title>
+	<script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="app">
+	<cpn ref="aaa"></cpn>
+	<cpn ref="bbb"></cpn>
+	<cpn ref="ccc"></cpn>
+	<button @click="refClick">按钮</button>
+</div>
+<template id="cpn">
+	<div>
+		<h2>我是子组件</h2>
+	</div>
+</template>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            message: ""
+        },
+        methods: {
+            refClick() {
+                // aaa是对象的一个key，通过对应的key拿到子组件的所有方法或者数据对象
+                // 通过key值，便可以找到key值对应的对象里面包含的属性和方法
+                // $refs是一个对象类型，默认为空
+                // $refs不能遍历
+                // 查看js中对象遍历的之四海
+                console.log(this.$refs)
+                // for (let i of this.$refs){
+                //     this.$refs.aaa.sendMessage();
+                //     // this.$refs.aaa.name
+                // }
+            }
+        },
+        components: {
+            cpn: {
+                template: '#cpn',
+                data() {
+                    return {
+                        name: '我是牛子航'
+                    }
+                },
+                methods: {
+                    sendMessage() {
+                        console.log("message");
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

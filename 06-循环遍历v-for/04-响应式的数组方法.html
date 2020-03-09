@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-for响应式</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app">
+        <ul>
+            <!-- 此处绑定的key，最好是唯一值，这样不会存在在添加时提示你的添加的内容重复，类似于元素中设定一个唯一的id值 -->
+            <li v-for = "(item,index) in letters" :key = "index">{{index}}--{{item}}</li>
+        </ul>
+        <button @click = "btnClick()">数组方法演示</button>
+    </div>
+
+    <script>
+     //创建Vue实例,得到 ViewModel
+     var app = new Vue({
+        el: '#app',
+        data: {
+            letters : ['A','B','C','D','E'],
+            // adds : ['OOO','BBB']
+        },
+        methods: {
+            btnClick() {
+                // 1.直接给数组改变值不是响应式的
+                // this.letters[0] = 'H'
+                // 2.push方法是响应式的
+                // this.letters.push('H','HHH','DDD')
+                // 3.pop也是响应式的，从数组中删除最后一个元素
+                // this.letters.pop()
+                // 4.方法会删除首个数组元素，并把所有其他元素“位移”到更低的索引。响应式
+                // this.letters.shift()
+                // unshift() 方法（在开头）向数组添加新元素，并“反向位移”旧元素：响应式
+                this.letters.unshift('ooo','bbb')
+
+            }
+        }
+     });
+    </script>
+</body>
+
+</html>

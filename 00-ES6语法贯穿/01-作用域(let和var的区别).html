@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app">
+        <button>button1</button>
+        <button>button2</button>
+        <button>button3</button>
+        <button>button4</button>
+        <button>button5</button>
+        <button>button6</button>
+    </div>
+
+    <script>
+            /*下面这段代码打出的值只有一个，每点击一次按钮，控制台都会打印第6个按钮被点击，这是因为在es5中，for和if没有
+             作用域的概念，var变量的i总是会被循环中最新的值所替代*/
+            var btns = document.getElementsByTagName('button');
+            for (var i= 0;i<btns.length;i++){
+                   
+                btns[i].addEventListener('click',function(){
+                    console.log(btns.length)
+                    console.log('第'+i+'个按钮被点击')
+
+                })
+            };
+
+            /*let有作用域，在函数和for和if中都有作用域的概念
+            */
+            for(let i = 0;i<btns.length;i++){
+                btns[i].addEventListener('click',function(){
+                    console.log('第'+i+'个按钮被点击')
+                })
+            }
+
+        
+    
+    </script>
+</body>
+
+</html>

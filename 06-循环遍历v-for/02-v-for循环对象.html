@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app"> 
+        <!-- 1.默认写 item in object ,则默认显示对象里的所有value -->
+        <ul>
+            <li v-for = "value in users">{{value}}</li>
+        </ul>
+        <!-- 2.如果需要将key和value都显示出来，则如下： -->
+        <ul>
+            <li v-for = "(value , key) in users">{{key}}--{{value}}</li>
+        </ul>
+        <!-- 3.还可以将其index也显示出来 -->
+        <ul>
+            <li v-for = "(value,key,index) in users">{{index+1}}--{{key}}--{{value}}</li>
+        </ul>
+    </div>
+
+    <script>
+     //创建Vue实例,得到 ViewModel
+     var app = new Vue({
+        el: '#app',
+        data: {
+            users : {
+                name : 'niuzihang',
+                age : 0.9,
+                sex : 'boy',
+                hobby: 'eat',
+                lover:'niuyongan'
+
+            }
+        },
+        methods: {}
+     });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app"> 
+      <h1 v-text = "totalPrice"></h1>  
+      <h2>商品总价格为：{{totalPrice}}</h2>
+    </div>
+
+    <script>
+     //创建Vue实例,得到 ViewModel
+     var app = new Vue({
+        el: '#app',
+        data: {
+            books: [
+                {id : 01,name : '编程的艺术',price : 200},
+                {id : 02,name : 'java吴师傅教程',price : 200},
+                {id : 03,name : '汇编语言',price : 200},
+                {id : 04,name : '慕课网教你写代码',price : 200},
+                {id : 05,name : 'python21天从入门到精通',price : 200}
+            ]
+        },
+        computed : {
+            
+            totalPrice : function(){
+               let result = 0;
+               // 1.ES6语法的一种写法
+                // for(let book of this.books) {
+                //       result += book.price;
+
+                // }
+                // 2.正常for循环的一种写法
+                // for(i=0;i<this.books.length;i++){
+                //     result +=this.books[i].price;
+                // }
+                // 3.ES6的另外一种写法
+                    for(let i in this.books){
+                        result += this.books[i].price;
+                    }
+                return result;
+            }
+            //以上三种写法，第一种最简单，直接不用在写下标i;
+        }
+     });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-model与select的绑定</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app">
+        <select name="" id="" v-model="fruit">
+            <option value="苹果">苹果</option>
+            <option value="香蕉">香蕉</option>
+            <option value="火龙果">火龙果</option>
+            <option value="橘子">橘子</option>
+        </select>
+        <h2>{{fruit}}</h2>
+
+        <!-- <select name="" id="" v-model="fruits" multiple>
+            <option value="苹果">苹果</option>
+            <option value="香蕉">香蕉</option>
+            <option value="火龙果">火龙果</option>
+            <option value="橘子">橘子</option>
+        </select>
+        <h2>{{fruits}}</h2> -->
+
+        <select name="fruitsName" id="fruitId" v-model="fruits"  multiple>
+            <option  v-for="item in fruitsArry"n >{{item}}</option>
+        </select>
+        <h2>{{fruits}}</h2>
+    </div>
+
+    <script>
+     //创建Vue实例,得到 ViewModel
+     var app = new Vue({
+        el: '#app',
+        data: {
+            fruit : '香蕉',
+            fruits : [],
+            fruitsArry : ['苹果','香蕉','火龙果','橘子']
+        },
+        methods: {}
+     });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-if登录切换案例</title>
+    <script src="../js/vue.js"></script>
+    <style>
+      #iphone{
+        color :aqua;
+        background-color: brown;
+        
+      }
+    </style>
+</head>
+
+<body>
+    <div id ="app"> 
+        <!-- <span v-if = "isShow">
+            账号登录：<input type="text">
+        </span>
+        <span v-else = "isShow">
+            手机登录：<input type="text">
+        </span>
+        <button @click = "isLogin()">切换界面</button> -->
+        <!-- <span v-if = "isShow">
+          账号登陆：<input type="text">
+        </span>
+        <span v-else>
+          手机号登录: <input type="text" name="phone" id="iphone">
+        </span>
+        <button @click = "isLogin()">切换登录方式</button>
+    </div> -->
+      <span v-if = "isShow">
+        <label for="username">用户账号</label>
+        <!-- vue内部虚拟dom的原因，如果不加key，vue会默认不改变input输入框中的值，让另一个input框去复用。加key后可以给key设一个唯一值，这样就
+        不用复用了 -->
+        <input type="text" id="username" placeholder="请输入账号" key = "username">
+      </span>
+      <span v-else>
+        <label for="phoneNumber">手机号码</label>
+        <input type="text" id="phoneNumber" placeholder="请输入手机号" key = "phoneNumber">
+      </span>
+      <button @click = "isLogin()">切换登录</button>
+    <script>
+     //创建Vue实例,得到 ViewModel
+     var app = new Vue({
+        el: '#app',
+        data: {
+            isShow : true
+        },
+        methods: {
+            isLogin(){
+                this.isShow = !this.isShow
+            }
+        }
+     });
+    </script>
+</body>
+
+</html>

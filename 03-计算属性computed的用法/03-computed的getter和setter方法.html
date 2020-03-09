@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app"> 
+      <h1>{{fullName}}</h1>
+      <h2>{{fullName}}</h2>
+    </div>
+
+    <script>
+     //创建Vue实例,得到 ViewModel
+     //options里可以放el,data,methods和生命周期钩子函数
+     var app = new Vue({
+        el: '#app',
+        data: {
+            firstName : 'Niu',
+            lastName : 'zihang'
+
+        },
+        // methods: {
+        //     getFullName : function(){
+        //         return this.firstName + '' + this.lastName
+        //     }
+        // },
+        computed : {
+            // 如果有set方法，则如下所写代码
+            fullName:{ 
+           set : function(newValue){
+               console.log("-----");
+               const names = newValue.split(' ');
+               this.firstName = names[0];
+               this.lastName = names[1];
+           },
+           get : function(){
+               return this.firstName + ' ' + this.lastName;
+           }
+        }
+        //  computed属性一般只有get方法，如下，可以省略get方法，直接写fullName属性；其实真正的内部写法如上面代码所示。fullName仅仅是一个属性
+        // fullName : function(){
+        //     return this.firstName + '' + this.lastName;        }
+        }
+     });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <cpn></cpn>    
+    </div>
+    <!-- 1.通过script标签 -->
+    <!-- <script type="text/x-template" id="cpn">
+    <div>
+        <h2>我是标题1</h2>
+        <p>我是段落</p>      
+    </div>
+    </script> -->
+    <!-- 2.template标签 -->
+    <template id="cpn">
+        <div>
+            <h2>我是标题2</h2>
+            <p>我是段落2</p>
+            <!-- <cpn1></cpn1> -->
+        </div>
+    </template>
+    <!-- <template id="cpn1">
+        <div>
+            <h2>我是标题1</h2>
+            <p>我是子组件1</p>
+        </div>
+    </template> -->
+
+    <script>
+        //全局组件的语法糖。等于是创建构造器和注册一块做了
+        Vue.component('cpn', {
+            template: '#cpn'
+        })
+
+        //创建Vue实例,得到 ViewModel
+        var app = new Vue({
+            el: '#app',
+            data: {},
+            methods: {}
+        });
+    </script>
+</body>
+
+</html>

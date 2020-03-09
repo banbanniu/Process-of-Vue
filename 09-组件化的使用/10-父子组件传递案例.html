@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 父组件传子组件必须是在props里定义的属性 -->
+    <!-- vue不建议直接修改或者双向绑定时直接绑定props中的属性 -->
+    <cpn :number1="num1" :number2="num2" @input-num1="changeNumber1" @input-num2="changeNumber2">
+    </cpn>
+  </div>
+
+  <template id="cpn1">
+    <div>
+      <!-- <h2>props:{{number1}}</h2>
+            <h2>data:{{dnumber1}}</h2>
+            <input type="text" v-model="dnumber1">
+            <h2>props:{{number2}}</h2>
+            <h2>data:{{dnumber2}}</h2>
+            <input type="text" v-model="dnumber2"> -->
+      <h2>props:{{number1}}</h2>
+      <h2>data:{{dnumber1}}</h2>
+      <input type="text" :value="dnumber1" @input="dClick1()">
+      <!-- <input type="text" :value="dnumber1" @input="dClick($event)"> 这种方法也是可以的，但是需要在方法中传参数event -->
+      <h2>props:{{number2}}</h2>
+      <h2>data:{{dnumber2}}</h2>
+      <input type="text" :value="dnumber2" @input="dClick2()">
+    </div>
+  </template>
+
+  <script>
+    let app = new Vue({
+      el: '#app',
+      data: {
+        num1: 1,
+        num2: 2
+      },
+      methods: {
+        // 这个方法中的value是怎么来的？
+        changeNumber1(value) {
+          this.num1 = parseFloat(value)
+          // this.num2 = this.num1 * 100
+        },
+        changeNumber2(value) {
+          this.num2 = parseFloat(value)
+          // this.num1 = this.num2 / 100
+        }
+      },
+      components: {
+        cpn: {
+          template: '#cpn1',
+          props: {
+            number1: Number,
+            number2: Number
+          },
+          data() {
+            return {
+              dnumber1: this.number1,
+              dnumber2: this.number2
+            }
+          },
+          methods: {
+            // 获取event事件时，在调用时可以不写参数，也可以写dClick($event),如果写调用参数，则需要
+            // 在方法中也传入参数event
+            dClick1() {
+              //将input中的value复制到dnumber中
+              this.dnumber1 = event.target.value
+              //同于组件和 prop，事件名不会被用作一个 JavaScript 
+              //变量名或属性名，所以就没有理由使用 camelCase 或 PascalCase 了。
+              // 并且 v-on 事件监听器在 DOM 模板中会被自动转换为全小写 
+              // (因为 HTML 是大小写不敏感的)，
+              // 所以 v-on:myEvent 将会变成 v-on:myevent——导致 myEvent 不可能被监听到。
+              // 因此，我们推荐你始终使用 kebab -case 的事件名。
+              //2.为了让父组件可以修改值，发出一个事件
+              this.$emit('input-num1', this.dnumber1)
+              //3.同时修改dnumber的值
+              this.dnumber2 = this.dnumber1 * 100
+              //4.将dnumber2的值传给input-num2事件，通过事件传给num2，number2绑定了num2,即此时将
+              // 值传给了number2
+              this.$emit('input-num2',this.dnumber2)
+            },
+            // dClick(event) { 需要调用时写$event
+            //     this.dnumber1 = event.target.value
+            dClick2() {
+              this.dnumber2 = event.target.value
+              this.$emit('input-num2', this.dnumber2)
+              this.dnumber1 = this.dnumber2 / 100
+              this.$emit('input-num1',this.dnumber1)
+            }
+          },
+        },
+      }
+    });
+  </script>
+</body>
+
+</html>

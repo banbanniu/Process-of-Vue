@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <form method="post">
+
+        <p> Low Air pressure limit <input id=testid value=":=LowAir:" name='LowAir' type="number" /> mBar</p>
+        <p> High Air pressure limit <input value=":=HighAir:" name='HighAir' type="number" /> mBar </p>
+        <p> Shaker speed 0-100% <input value=":=Freq:" name='Freq' type="number" /> % </p>
+        <p> Water leak sensor present = 1 <input value=":=WaterleakPresent:" name='WaterleakPresent' type="number" id="water"
+                onkeyup="check()" /> - </p>
+        <!-- <button onclick="check()" type="submit">Save</button></p> -->
+    </form>
+    <script>
+        // function keyPress() {
+        //     var keyCode = event.keyCode;
+        //     var x= document.getElementById("testid")
+        //     if ((x.value >= 1 && x.value <= 10)) {
+        //         // return true;
+        //         event.returnValue = true
+        //     } else {
+        //         alert("Enter Flowrate between 1 and 10");
+        //         document.getElementById("testid").value = "";
+        //         return false;
+        //         // event.returnValue = false;
+        //     }
+        // }
+function check()
+    {
+        var x = document.getElementById("water");
+        if (x.value >= 1  && x.value <= 10 ) 
+        { 
+            return true;
+        }
+        else 
+        { 
+            alert ("Enter Flowrate between 1 and 10");
+            document.getElementById("water").value = "";
+            return false;
+        }
+    }
+
+    </script>
+</body>
+
+</html>

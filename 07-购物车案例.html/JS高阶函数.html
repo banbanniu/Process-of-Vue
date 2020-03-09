@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS高阶函数</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id ="app"> </div>
+
+    <script>
+    let nums = [10,20,30,110,40,120,50,1900,60]
+     let newNums = nums.filter(function(n){
+        return n<100
+    }).map(function(n){
+        return n*2
+    }).reduce(function(prevValue,n){
+        return prevValue + n
+    },0)
+    console.log(newNums)
+    </script>
+</body>
+
+</html>

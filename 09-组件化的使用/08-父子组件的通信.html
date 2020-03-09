@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <cpn :cmessage="message" :cmovies="movies"></cpn>
+  </div>
+  <!-- //template不能卸载script标签中，一个template模板中智能含有一个根标签 -->
+  <template id="cpn">
+    <div> 
+      <ul>
+        <li v-for="item in cmovies">{{item}}</li>
+      </ul>
+      <h1>{{cmessage}}</h1>
+    </div>
+  </template>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: '你好，牛子航先生',
+        movies: ['海贼王', '魔戒', '美丽心灵', '一个父亲的独白']
+      },
+      components: {
+        cpn: {
+          template: '#cpn',
+          props: {
+            cmovies: {
+              type: Array,
+              default: ['橘子','香蕉','苹果','梨'],
+              required : true // required 这个属性是必须传的属性
+            },
+            cmessage: {
+              type: String,
+              default: '你好，牛子航弟弟'
+            }
+          },
+          data() {
+            return {}
+          }
+        }
+      },
+    });
+  </script>
+</body>
+
+</html>
