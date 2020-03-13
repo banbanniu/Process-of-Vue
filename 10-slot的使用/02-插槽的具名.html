@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>具名插槽</title>
+</head>
+<body>
+<div id="app">
+    <!--     <cpn><p slot="left">button</p></cpn>-->
+    <!--     <cpn><button slot="center">按钮</button></cpn>-->
+    <cpn>
+        <button slot="left">左</button>
+    </cpn>
+    <cpn>
+        <button slot="center">中</button>
+    </cpn>
+</div>
+<template id="cpn">
+    <div>
+        <!--<h2>插槽的具名是什么？</h2>-->
+        <!--<p>插槽的具名是指为了指定使用具体的插槽而为slot标签指定一个具体的name</p>-->
+        <!--<slot><button>button</button></slot>-->
+        <slot name="left"><p>左</p></slot>
+        <slot name="center"><p>中</p></slot>
+        <!--         <slot name="right"><p>插槽的具名</p></slot>-->
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            message: ""
+        },
+        methods: {},
+        components: {
+            cpn: {
+                template: '#cpn'
+            }
+        }
+    });
+</script>
+</body>
+</html>

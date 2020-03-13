@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slot的基本使用</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<!--1. slot就是插槽的意思，是通过子组件的template为父组件使用时留一个预留接口-->
+<div id="app">
+    <cpn></cpn>
+    <!--     2. 下面的p是使用了插槽，默认为替换在template中定义的插槽-->
+    <cpn><p>我是替换内容</p></cpn>
+    <cpn></cpn>
+</div>
+
+<template id="cpn">
+    <!--     2.插槽可以为空，也可以默认给一个标签属性定义-->
+    <div>
+        <h1>my name is slot</h1>
+        <p>please give me a like</p>
+        <slot>
+            <button>按钮</button>
+        </slot>
+    </div>
+</template>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            message: ""
+        },
+        methods: {},
+        components: {
+            cpn: {
+                template: '#cpn'
+            }
+        }
+    });
+</script>
+</body>
+</html>

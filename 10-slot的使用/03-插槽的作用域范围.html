@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作用域插槽</title>
+</head>
+<body>
+<div id="app">
+    <cpn>
+        <!--        2.在父组件中使用，需要添加一个template标签（vue2.5以下必须用template）-->
+<!--       3.-->
+        <div slot-scope="slotScope">
+<!--            <span v-for="slotScope.data">{{slotScope.data.join(' - ')}}</span>-->
+            <span>
+               {{ slotScope.data.join(' - ')}}
+            </span>
+        </div>
+    </cpn>
+    <cpn></cpn>
+    <cpn></cpn>
+</div>
+<template id="cpn">
+    <div>
+        <!--        slot是个插槽，可以用在任何你写的子组件的template里，当然在-->
+        <!--        template里还是需要一个根标签-->
+        <!--       1. 将子组件中的数据绑定在slot中，如下-->
+        <slot :data="pLanguage">
+<!--            <ul>-->
+<!--                <li v-for="item in pLanguage">{{item}}</li>-->
+<!--            </ul>-->
+            因为pLanguage是个vue里定义的数组，所以要用{{}}绑定
+            {{pLanguage.join( ' * ')}}
+        </slot>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        data: {
+            message: "",
+
+        },
+        methods: {},
+        components: {
+            cpn: {
+                template: '#cpn',
+                data() {
+                    return {
+                        pLanguage: ['java', 'pathon', 'GO', 'swift', 'javaScript']
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
